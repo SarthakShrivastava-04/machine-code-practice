@@ -1,0 +1,51 @@
+.page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.all{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:50px;
+    align-items: center;
+    justify-content: flex-start;
+    outline: #000 solid 1px;
+    padding: 5px;;
+}
+.sit{
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+
+}
+.seat{
+   height:40px;
+   width:40px;
+    background-color: #cb8606;
+}
+.sleeper{
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+}
+.sleep{
+     height:90px;
+   width:40px;
+    background-color: #000;
+}
