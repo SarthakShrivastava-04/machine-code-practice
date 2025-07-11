@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'; 
 import { users } from '../data.js';
 
-const SECRET_KEY = 'PBJWYNCXGNNDOT2OKJLW22TQGQXS6MCJOYYDMSSNOZXT2DIK';
+const SECRET_KEY = 'PBJWYNCXGNNDOT2OKJLW22TQGQXS6MCJOYYDMSSNOZXT2DIK9';
 
 const generateToken = (id) => {
   return jwt.sign({ id }, SECRET_KEY, { expiresIn: '1h' });
