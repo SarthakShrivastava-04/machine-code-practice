@@ -1,23 +1,21 @@
 import express from "express";
-import Todo from "../models/Todo";
+import Todo from "../models/Todo.js";
 
-const router = express.Router();
+const todoRoutes = express.Router();
 
-router.use(protect);
-
-router.get("/", async (req, res) => {
+todoRoutes.get("/", async (req, res) => {
   const todos = await Todo.find({ userId: req.userId });
   res.json(todos);
 });
 
-router.post("/", async (req, res) => {
+todoRoutes.post("/", async (req, res) => {
   const { text } = req.body;
   const todo = await Todo.create({ text, userId: req.userId });
 
   res.status(201).json(todo);
 });
 
-router.put("/:id", async (req, res) => {
+todoRoutes.put("/:id", async (req, res) => {
   const todo = await Todo.findOne({
     _id: req.params.id,
     userId: req.userId,
@@ -30,7 +28,7 @@ router.put("/:id", async (req, res) => {
   res.json(todo);
 });
 
-router.delete("/:id", async (req, res) => {
+todoRoutes.delete("/:id", async (req, res) => {
   const todo = await Todo.findOneAndDelete({
     _id: req.params.id,
     userId: req.userId,
@@ -39,4 +37,4 @@ router.delete("/:id", async (req, res) => {
   res.json({ message: "Deleted successfully" });
 });
 
-export default router;
+export default todoRoutes;

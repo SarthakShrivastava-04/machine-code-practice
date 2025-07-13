@@ -1,11 +1,12 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User";
+import User from "../models/User.js";
 
-const router = express.Router();
+const authRoutes = express.Router();
 
-router.post("/register", async (req, res) => {
+authRoutes.post("/register", async (req, res) => {
+  console.log(req.body);
   const { username, password } = req.body;
   try {
     const exists = await User.findOne({ username });
@@ -13,17 +14,14 @@ router.post("/register", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, password: hashedPassword });
-
-    jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1d",
-    });
-    res.status(200).json({ token, message: "user registered successfully" });
+    
+    res.status(200).json({ user, message: "user registered successfully" });
   } catch (err) {
     res.status(500).json({ message: "server error", error: err.message });
   }
 });
 
-router.post("login", async (req, res) => {
+authRoutes.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
@@ -42,4 +40,4 @@ router.post("login", async (req, res) => {
   }
 });
 
-export default router;
+export default authRoutes;
